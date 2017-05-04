@@ -9,12 +9,14 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new
+    @wiki.user = current_user
   end
   
   def create
      @wiki = Wiki.new
      @wiki.title = params[:wiki][:title]
      @wiki.body = params[:wiki][:body]
+     @wiki.user = current_user
 
      if @wiki.save
        flash[:notice] = "wiki was saved."
@@ -31,6 +33,7 @@ class WikisController < ApplicationController
   
   def update 
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
     
