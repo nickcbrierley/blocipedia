@@ -6,15 +6,35 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
-admin = User.create!(
+include Faker
+User.create!(
     email: 'admin@admin.com',
     password: 'password',
     role: 'admin'
     )
     
-premium = User.create!(
+User.create!(
     email: 'paid@paid.com',
     password: 'password',
     role: 'premium'
-    )    
+    )
+    
+10.times do 
+    User.create(
+        email: Faker::Internet.email,
+        password: Faker::Internet.password
+        )
+    end
+users = User.all
+50.times do 
+    Wiki.create!(
+        title: Faker::Hipster.word,
+        body: Faker::Hipster.paragraph(40, true, 4),
+        user: users.sample
+        )
+end
+wikis = Wiki.all
+    
+
+    
+    
