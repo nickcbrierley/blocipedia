@@ -8,6 +8,11 @@
 
 include Faker
 User.create!(
+    email: 'free@free.com',
+    password: 'password'
+    )
+
+User.create!(
     email: 'admin@admin.com',
     password: 'password',
     role: 'admin'
