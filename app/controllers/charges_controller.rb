@@ -16,7 +16,7 @@ class ChargesController < ApplicationController
      description: "Premium Membership - #{current_user.email}",
      currency: 'usd'
    )
-   charge = Stripe::Charge.retrieve
+
    upgrade_to_premium
 
    flash[:notice] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
