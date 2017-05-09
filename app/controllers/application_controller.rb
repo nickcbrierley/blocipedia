@@ -19,6 +19,9 @@ class ApplicationController < ActionController::Base
   
   def downgrade_to_standard
     current_user.update_attributes(:role => "standard")
+    current_user.wikis.each do |pub|
+      pub.update_attributes(private: false)
+    end
   end
   
 end
